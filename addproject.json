@@ -1,0 +1,16 @@
+{
+  "addProject": [
+    {
+      "id": "1",
+      "projectname": "defectTracker"
+    },
+    {
+      "id": "2",
+      "projectname": "project2"
+    },
+    {
+      "id": "3",
+      "projectname": "project3"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+.col-sm-2  {
+    padding-top: 20px;
+    background-color: black;
+    height: 100px;
+    padding: 20px;
+    margin-top: -20px;
+    padding-bottom: 650px;
+    font-size: 20px;
+    font-style: inherit;
+    font-family: -webkit-body;
+    margin-bottom: -200px;
+    padding-left: 5px;
+    padding-right: 10px;
+  } 
+  
+ 
+  .itemName {
+    font-size: 25px;
+    font-family:fantasy;
+  }
+  .navbar {
+    color: white;
+    margin-bottom: 10;
+    border-radius: 0;
+    font-size: 20px;
+    font-style: inherit;
+    font-family: -webkit-body;
+   background-color: darkblue;
+  }
+ 
+  .row.content {height: 450px}
+
+
+  footer {
+    background: midnightblue;
+    color: white;
+    padding: 15px;
+    margin-top: -50px;
+    font-size: 20px;
+    font-family: -webkit-body;
+    font-style: oblique;
+    margin-bottom: -100px;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+
+  }
+
+i{
+  font-size: 24px;
+}
+
+.col-md-8 {
+  margin-top: -460px;
+  margin-left: 300px;
+  margin-bottom: 100px;
+}
+
+.bs-example{
+  font-size: 12px;
+  margin-top: -460px;
+  margin-left: 250px;
+  margin-bottom: 100px;
+}
+
+.bs-example-project{
+  margin-top: 50px;
+  margin-left: 100px;
+  padding-right: 200px;
+}
+
+.bs-example-module{
+  margin-top: 50px;
+  margin-left: 100px;
+  padding-right: 200px;
+}
+
+.bs-example-user{
+  margin-top: 50px;
+  margin-left: 100px;
+  padding-right: 200px;
+}
+
+/* .bs-example-defect{
+  margin-top: 50px;
+  margin-left: 100px;
+  padding-right: 200px;
+} */

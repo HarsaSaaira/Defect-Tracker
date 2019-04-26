@@ -1,0 +1,28 @@
+{
+  "addUser": [
+    {
+      "id": "1",
+      "username": "keerthi",
+      "password": "keerthi1234",
+      "role": "developer"
+    },
+    {
+      "id": "12",
+      "username": "as22",
+      "password": "121632",
+      "role": "developer"
+    },
+    {
+      "id": "13",
+      "username": "mala",
+      "password": "mala4545",
+      "role": "qa"
+    },
+    {
+      "id": "4",
+      "username": "dwqd",
+      "password": "dw31",
+      "role": "qa"
+    }
+  ]
+}
