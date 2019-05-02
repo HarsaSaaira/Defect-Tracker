@@ -25,14 +25,6 @@ class AddModule extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         let d = {
-            // moduleName: this.state.moduleName,
-            // project: {
-            //     projectId: this.state.projectId
-            // },
-
-            // developer: {
-            //     developerId: this.state.developerId
-            // }
             
                 "moduleName": this.state.moduleName,
                 "project": {

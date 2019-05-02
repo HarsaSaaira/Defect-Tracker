@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-class AddProject extends Component {
+class AddDeveloper extends Component {
     state = {
       
-        projectName:null
+        developerName:null
     }
 
     handleChange = (e) => {
@@ -15,7 +15,7 @@ class AddProject extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         console.log(this.state);
-        fetch("http://localhost:8080/defectapplication/saveProject", {
+        fetch("http://localhost:8080/defectapplication/saveDeveloper", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json,text/plain,*/*',
@@ -32,12 +32,12 @@ class AddProject extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-8 m-auto">
-                                <h1>Add Project</h1>
+                                <h1>Add Developer</h1>
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="row">
                                         <div className="col-xs-6">
-                                            <label htmlFor="id">Project Name</label>
-                                            <input type="text" className="form-control form-control-lg" id="projectName" onChange={this.handleChange} />
+                                            <label htmlFor="id">Developer Name</label>
+                                            <input type="text" className="form-control form-control-lg" id="developerName" onChange={this.handleChange} />
                                         </div>
                                     </div>
 
@@ -56,4 +56,4 @@ class AddProject extends Component {
     }
 }
 
-export default AddProject
+export default AddDeveloper

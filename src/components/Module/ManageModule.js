@@ -3,15 +3,19 @@ import React from 'react';
 export default class ListModule extends React.Component {
 
     state = {
-        Module:[]
+        Module:[],
+        Developer:[],
+        Project:[]
     };
+    Project={
+        projectName:"",
+    }
 
-    async componentDidMount() {
-        // const url = "http://localhost:3000/AddDefect";
-        // const response = await fetch(url);
-        // const data = await response.json();
-        // this.setState({ detail: data.AddDefect, loading: false });
-        // console.log(data); 
+    Developer={
+        developerName:"",
+    }
+
+    async componentDidMount() { 
         this.getPost();
     }
 
@@ -21,18 +25,10 @@ export default class ListModule extends React.Component {
         .then((data)=>{
             console.log(data);
             this.setState({ Module: data});
-        })
-        
+        })      
     }
 
     render() {
-        // if (this.state.loading) {
-        //     return <div>loading...</div>
-        // }
-
-        // if (!this.state.detail.length) {
-        //     return <div>didn't get a person</div>
-        // }
         return (
             <div className="bs-example-module">
               
@@ -41,19 +37,23 @@ export default class ListModule extends React.Component {
                         <table className="table">
                             <thead>
                                 <tr>
-                                   
-                                    <th>ModuleName</th>
+                                    <th>ModuleID</th>
+                                    <th>ModuleName</th>                                   
+                                    <th>DeveloperID</th>
                                     <th>ProjectID</th>
-                                    <th>UserID</th>
+                                    <th>Delete</th>
+                                    <th>Update</th>
                                 </tr>
                             </thead>
                             <tbody>
                             {this.state.Module.map(e => (
                                 <tr>
-                                  
-                                    <td>{e.moduleName}</td>
-                                    <td>{e.projectId}</td>
-                                    <td>{e.userId}</td>
+                                    <td>{e.moduleId}</td>
+                                    <td>{e.moduleName}</td>     
+                                    <td>{e.developer.developerId}</td>
+                                    <td>{e.project.projectId}</td>
+                                    <td><button className="btn btn-danger btn-sm" >Delete</button></td>
+                                    <td><button className="btn btn-primary btn-sm" >Update</button></td>
                                 </tr>
                             ))}
                             </tbody>
@@ -65,3 +65,5 @@ export default class ListModule extends React.Component {
         )
     }
 }
+
+

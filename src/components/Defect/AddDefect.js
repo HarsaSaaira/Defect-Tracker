@@ -5,20 +5,19 @@ class AddDefect extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            Module: [],
+            mod: [],
             Developer: [],
-            post: []
+            dev: []
         }
     }
 
-
     state = {
 
-        moduleId: null,
+        module: null,
         description: null,
         defectType: null,
         severity: null,
-        Priority: null,
+        priority: null,
         stepRecreate: null,
         assignTo: null,
         status: null,
@@ -35,18 +34,44 @@ class AddDefect extends Component {
         this.setState({
             [e.target.id]: e.target.value
         })
+
     }
+
+    handleChange1 = (e) => {
+        this.setState({
+            module: e.target.value
+        });
+        console.log(e.target.value)
+        let url = `http://localhost:8080/defectapplication/findAllModules/${e.target.value}`;
+        console.log(url);
+        fetch(url)
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data)
+                console.log(data.developer.developerName)
+                this.setState({ dev: data.developer });
+                console.log(this.state.dev);
+            })
+
+    };
+
+    handleChange2 = (e) => {
+        this.setState({
+            assignTo: e.target.value
+        });
+        console.log(e.target.value)
+
+    }
+
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let d = {
-            "module":{
-                "moduleId": this.state.moduleId,
-            },
+        let defect = {
+            "module": this.state.module,
             "description": this.state.description,
             "defectType": this.state.defectType,
             "severity": this.state.severity,
-            "Priority": this.state.Priority,
+            "priority": this.state.priority,
             "stepRecreate": this.state.stepRecreate,
             "assignTo": this.state.assignTo,
             "status": this.state.status,
@@ -55,38 +80,41 @@ class AddDefect extends Component {
             "fixedDate": this.state.fixedDate,
             "fixedBy": this.state.fixedBy,
             "availableIn": this.state.availableIn,
-            "comments": this.state.comments
+            "comments": this.state.comments,
         }
+        console.log(defect);
 
-        // console.log(this.state);
-        console.log(d);
-        fetch("http://localhost:8080/defectapplication/saveDefect", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json,text/plain,*/*',
-                'Content-type': 'application/json'
-            },
-            // body: JSON.stringify(this.state)
-            body: JSON.stringify(d)
-        })
+        fetch("http://localhost:8080/defectapplication/saveDefect",
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json,text/plain,*/*',
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(defect)
+            })
     };
 
     componentDidMount() {
-        let url = "http://localhost:8080/defectapplication/findAllDefect";
+        this.select()
+        let url = `http://localhost:8080/defectapplication/findAllModule`;
         console.log(url);
         fetch(url)
-            .then(resp => resp.json)
+            .then(resp => resp.json())
             .then(data => {
                 console.log(data)
-                let module = data.map((post) => {
+
+                let mod = data.map((post) => {
                     return (
-                        <option value={post.moduleId}>{post.moduleName}</option>
+                        <option value={post.moduleId}>{post.moduleId}</option>
                     )
                 })
-
-                this.setState({ module: module });
-
+                this.setState({ mod: mod });
             })
+    }
+
+    select(id) {
+        console.log(id)
     }
 
     render() {
@@ -100,11 +128,10 @@ class AddDefect extends Component {
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="row">
                                         <div className="col-xs-6">
-                                            <label htmlFor="moduleId">Module ID</label>
-                                            {/* <input type="text" class="form-control form-control-lg" id="module" onChange={this.handleChange} /> */}
-                                            <select id="moduleId" className="form-control" onChange={this.handleChange}>
-                                            <option>Choose Option</option>
-                                                {this.state.module}
+                                            <label htmlFor="module">Module Name</label>
+                                            <select id="module" className="form-control" onChange={(e) => this.handleChange1(e)}>
+                                                <option>Choose Option</option>
+                                                {this.state.mod}
                                             </select>
                                         </div>
                                         <div className="col-xs-6">
@@ -130,8 +157,8 @@ class AddDefect extends Component {
                                     </div>
                                     <div className="row">
                                         <div className="col-xs-6">
-                                            <label htmlFor="Priority">Priority</label>
-                                            <select className="form-control form-control-lg" id="Priority" onChange={this.handleChange}>
+                                            <label htmlFor="priority">Priority</label>
+                                            <select className="form-control form-control-lg" id="priority" onChange={this.handleChange}>
                                                 <option value="">Choose Option</option>
                                                 <option value="high">High</option>
                                                 <option value="medium">medium</option>
@@ -142,10 +169,10 @@ class AddDefect extends Component {
                                             <label htmlFor="defectType">Defect Type</label>
                                             <select className="form-control form-control-lg" id="defectType" onChange={this.handleChange}>
                                                 <option value="">Choose Option</option>
-                                                <option value="high">UI</option>
-                                                <option value="medium">Functionality</option>
-                                                <option value="low">Enhancement</option>
-                                                <option value="low">Proformance</option>
+                                                <option value="UI">UI</option>
+                                                <option value="Functionality">Functionality</option>
+                                                <option value="Enhancement">Enhancement</option>
+                                                <option value="Proformance">Proformance</option>
                                             </select>
                                         </div>
                                     </div>
@@ -166,21 +193,20 @@ class AddDefect extends Component {
                                             <label htmlFor="status">Status</label>
                                             <select className="form-control form-control-lg" id="status" onChange={this.handleChange}>
                                                 <option value="">Choose Option</option>
-                                                <option value="high">New</option>
-                                                <option value="medium">Open</option>
-                                                <option value="low">Fixed</option>
-                                                <option value="low">Closed</option>
-                                                <option value="low">Reopened</option>
-                                                <option value="low">Rejected</option>
-                                                <option value="low">Deferred</option>
+                                                <option value="New">New</option>
+                                                <option value="Open">Open</option>
+                                                <option value="Fixed">Fixed</option>
+                                                <option value="Closed">Closed</option>
+                                                <option value="Reopened">Reopened</option>
+                                                <option value="Rejected">Rejected</option>
+                                                <option value="Deferred">Deferred</option>
                                             </select>
                                         </div>
                                         <div className="col-xs-6">
-                                            <label htmlFor="assignTo">Assigned To</label>
-                                            <select className="form-control form-control-lg" id="assignTo" onChange={this.handleChange}>
-                                                <option value="">Choose Option</option>
-                                                <option value="high">Keerthana</option>
-                                                <option value="medium">Priyanka</option>
+                                            <label htmlFor="developerId">Assigned To</label>
+                                            <select className="form-control form-control-lg" id="developerId" value={this.state.assignTo} onChange={this.handleChange2}>
+                                                <option>Choose Option</option>
+                                                <option value={this.state.dev.developerName}> {this.state.dev.developerName}</option>
                                             </select>
                                         </div>
                                     </div>

@@ -3,15 +3,11 @@ import React from 'react';
 export default class List extends React.Component {
 
     state = {
-        Defect:[]
-    };
+        Defect:[],
 
-    async componentDidMount() {
-        // const url = "http://localhost:3000/AddDefect";
-        // const response = await fetch(url);
-        // const data = await response.json();
-        // this.setState({ detail: data.AddDefect, loading: false });
-        // console.log(data); 
+    };
+   
+    componentDidMount() {
         this.getPost();
     }
 
@@ -26,13 +22,6 @@ export default class List extends React.Component {
     }
 
     render() {
-        // if (this.state.loading) {
-        //     return <div>loading...</div>
-        // }
-
-        // if (!this.state.detail.length) {
-        //     return <div>didn't get a person</div>
-        // }
         return (
             <div className="bs-example-defect">
               
@@ -42,7 +31,7 @@ export default class List extends React.Component {
                             <thead>
                                 <tr>
                                     <th>DefectID</th>
-                                    <th>ModuleID</th>
+                                    <th>Module</th>
                                     <th>Description</th>
                                     <th>StepsRecreate</th>
                                     <th>Severity</th>
@@ -62,11 +51,11 @@ export default class List extends React.Component {
                             {this.state.Defect.map(e => (
                                 <tr>
                                     <td>{e.defectId}</td>
-                                    <td>{e.moduleId}</td>
+                                    <td>{e.module}</td>
                                     <td>{e.description}</td>
                                     <td>{e.stepRecreate}</td>
                                     <td>{e.severity}</td>
-                                    <td>{e.Priority}</td>
+                                    <td>{e.priority}</td>
                                     <td>{e.defectType}</td>
                                     <td>{e.enterDate}</td>
                                     <td>{e.enterBy}</td>
